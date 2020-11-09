@@ -98,10 +98,15 @@ const formatter = function formatter(options, severity, date, elems) {
         }
     })();
     const rootFolderName = options.rootFolderName;
+    const disableColor = options.disableColor === true;
 
     /*
     LOGIC
     */
+     if (disableColor) {
+        // reassign chalk
+        chalk = new chalk.constructor({ enabled: false });
+    }
 
     // the last element is an aggregate object of all of the additional passed in elements
     const aggObj = elems[elems.length - 1];
